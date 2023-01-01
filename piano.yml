@@ -46,7 +46,7 @@ Layer:
   geometry: "polygon"
   <<: *extents
   Datasource:
-    file: shape/simplified_land_polygons.shp
+    file: forte/shape/simplified_land_polygons.shp
     type: "shape"
 
 # - id: land
@@ -54,7 +54,7 @@ Layer:
 #   geometry: "polygon"
 #   <<: *extents
 #   Datasource:
-#     file: shape/land_polygons.shp
+#     file: forte/shape/land_polygons.shp
 #     type: "shape"
 
 - id: landuse
@@ -193,7 +193,7 @@ Layer:
   geometry: "polygon"
   <<: *extents84
   Datasource:
-    file: data/disputed.json
+    file: forte/data/disputed.json
     type: geojson
 
 - id: itl_boundary
