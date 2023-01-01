@@ -4,11 +4,11 @@
   line-clip: true;
   line-dasharray: 4, 4;
   [zoom<12] {
-    polygon-pattern-file: url('icon/pattern/disputed.svg');
+    polygon-pattern-file: url('forte/icon/pattern/disputed.svg');
     polygon-pattern-alignment: local;
   }
   [zoom<4] {
-    polygon-pattern-file: url('icon/pattern/disputed_small.svg');
+    polygon-pattern-file: url('forte/icon/pattern/disputed_small.svg');
   }
   [zoom=9] {
     polygon-pattern-opacity: 0.8;
