@@ -1,6 +1,6 @@
 scale: 1
 metatile: 4
-name: "Piano"
+name: "Piano - https://github.com/tilery/pianoforte"
 bounds: &world
   - -180
   - -85.05112877980659
@@ -24,20 +24,20 @@ extents84: &extents84
   srs-name: "WGS84"
   srs: "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
 db: &db
-  dbname: tilery
+  dbname: osm
   geometry_field: geometry
   type: postgis
   extent: -20037508,-19929239,20037508,19929239
-  password: null
-  user: tilery
-  host: ''
+  password: my_password
+  user: argonos
+  host: argonos-osm-cluster
 
 Stylesheet:
-- base.mss
-- piano/base.mss
-- admin.mss
-- labels.mss
-- piano/labels.mss
+- forte/base.mss
+- forte/piano/base.mss
+- forte/admin.mss
+- forte/labels.mss
+- forte/piano/labels.mss
 
 Layer:
 
@@ -46,16 +46,16 @@ Layer:
   geometry: "polygon"
   <<: *extents
   Datasource:
-    file: "https://osmdata.openstreetmap.de/download/simplified-land-polygons-complete-3857.zip"
+    file: shape/simplified_land_polygons.shp
     type: "shape"
 
-- id: land
-  class: ""
-  geometry: "polygon"
-  <<: *extents
-  Datasource:
-    file: https://osmdata.openstreetmap.de/download/land-polygons-split-3857.zip
-    type: "shape"
+# - id: land
+#   class: ""
+#   geometry: "polygon"
+#   <<: *extents
+#   Datasource:
+#     file: shape/land_polygons.shp
+#     type: "shape"
 
 - id: landuse
   class: ""
@@ -254,9 +254,9 @@ Layer:
             geometry, COALESCE("name:{lang}", name) AS name, '{lang}' AS lang, capital, prio::int,
             NULLIF(ldir, '') as ldir,
             CASE WHEN type IN ('consulat', 'consulat_general', 'rp', 'bureau') THEN 'intermediate'
-                 WHEN type IN ('ambassade','hc') THEN 'embassy'
-                 WHEN type = 'capitale' THEN 'capital'
-                 ELSE type END AS type
+                WHEN type IN ('ambassade','hc') THEN 'embassy'
+                WHEN type = 'capitale' THEN 'capital'
+                ELSE type END AS type
           FROM
             city
           ORDER BY
